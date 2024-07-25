@@ -11,7 +11,18 @@ theme_set(theme_bw())
 
 ## qualified hitters from 2021-23
 ### load FanGraphs hitters
-qual_hitters <- baseballr::fg_bat_leaders(startseason = "2021", endseason = "2023")
+#### 2021
+qual_hitters_21 <- baseballr::fg_batter_leaders(startseason = 2021,
+                                             endseason = 2021) |> 
+  select(PlayerName, AB)
+
+#### 2022
+qual_hitters_22 <- baseballr::fg_batter_leaders(startseason = 2022,
+                                                endseason = 2022)
+
+#### 2023
+qual_hitters_23 <- baseballr::fg_batter_leaders(startseason = 2023,
+                                                endseason = 2023)
 
 ### glimpse
 glimpse(qual_hitters)
@@ -36,3 +47,6 @@ qual_hitters |>
 ### 
 qual_hitters <- qual_hitters |> 
   filter(AB > 240.5)
+
+
+### BETTER IDEA: USE AGGREGATED (BY PLAYER AND DATE) VARIABLES FROM STATCAST
